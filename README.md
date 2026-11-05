@@ -1,6 +1,6 @@
 # Offline Coding Assistant (Cydags)
 
-A personal, fully offline coding assistant that runs locally on my machine. It combines a local language model with repository inspection tools so it can understand the project structure, locate relevant code, and answer questions without sending any data over the internet.
+A personal, fully offline coding assistant that runs locally. It combines a local language model with repository inspection tools so it can understand the project structure, locate relevant code, and answer questions without sending any data over the internet.
 
 ## Why I Built This
 
