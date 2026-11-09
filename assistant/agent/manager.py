@@ -43,7 +43,7 @@ class AgentManager:
             r"\bcreate\b", r"\bwrite\b", r"\bmake\b", r"\bgenerate\b",
             r"\badd\b", r"\bmodify\b", r"\bedit\b", r"\bupdate\b",
             r"\bdelete\b", r"\bremove\b", r"\brefactor\b", r"\brun\b",
-            r"\bexecute\b", r"\btest\b", r"\binstall\b", r"\bfix\b"
+            r"\bexecute\b", r"\btest\b", r"\binstall\b", r"\bfix\b", r"\bchange\b"
         ]
         for pattern in action_patterns:
             if re.search(pattern, user_input, re.IGNORECASE):
