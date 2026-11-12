@@ -92,7 +92,7 @@ The architecture introduces an Agent/Orchestrator between the user interface, mo
 | Sub-Phase | Focus | Expected Result |
 |---|---|---|
 | ✅ 4.1 | Agent Architecture | Agent execution framework |
-| 4.2 | Tool System | Standardized tool registration and execution |
+| ✅ 4.2 | Tool System | Standardized tool registration and execution |
 | 4.3 | File Operations | Ability to read and modify project files |
 | 4.4 | Terminal Integration | Controlled command execution |
 | 4.5 | Task Planning | Break requests into executable steps |
@@ -968,10 +968,10 @@ Phase 4 is complete when:
 
 - [x] Agent manager is implemented.
 - [x] Agent execution lifecycle is established.
-- [ ] Tool registration works.
-- [ ] Tool discovery works.
-- [ ] Tool argument validation works.
-- [ ] Repository tools are integrated.
+- [x] Tool registration works.
+- [x] Tool discovery works.
+- [x] Tool argument validation works.
+- [x] Repository tools are integrated.
 - [ ] File reading works.
 - [ ] File creation works.
 - [ ] File modification works.
