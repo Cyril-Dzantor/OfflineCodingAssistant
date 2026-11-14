@@ -2,10 +2,11 @@ from assistant.tools.base import BaseTool, ToolParameter, ToolResult, Permission
 from assistant.tools.registry import ToolRegistry
 from assistant.tools.repo_tools import SearchCodeTool, ListFilesTool, GetFileSymbolsTool
 from assistant.tools.file_tools import ReadFileTool, CreateFileTool, EditFileTool, DeleteFileTool
+from assistant.tools.terminal_tools import ExecuteCommandTool
 
 
 def get_default_registry() -> ToolRegistry:
-    """Creates a pre-configured registry with standard repository and file tools."""
+    """Creates a pre-configured registry with standard repository, file, and terminal tools."""
     registry = ToolRegistry()
     # Repository tools
     registry.register(SearchCodeTool())
@@ -16,6 +17,8 @@ def get_default_registry() -> ToolRegistry:
     registry.register(CreateFileTool())
     registry.register(EditFileTool())
     registry.register(DeleteFileTool())
+    # Terminal tools
+    registry.register(ExecuteCommandTool())
     return registry
 
 
@@ -32,6 +35,7 @@ __all__ = [
     "CreateFileTool",
     "EditFileTool",
     "DeleteFileTool",
+    "ExecuteCommandTool",
     "get_default_registry",
 ]
 
