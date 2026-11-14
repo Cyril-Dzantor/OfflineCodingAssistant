@@ -93,7 +93,7 @@ The architecture introduces an Agent/Orchestrator between the user interface, mo
 |---|---|---|
 | ✅ 4.1 | Agent Architecture | Agent execution framework |
 | ✅ 4.2 | Tool System | Standardized tool registration and execution |
-| 4.3 | File Operations | Ability to read and modify project files |
+| ✅ 4.3 | File Operations | Ability to read and modify project files |
 | 4.4 | Terminal Integration | Controlled command execution |
 | 4.5 | Task Planning | Break requests into executable steps |
 | 4.6 | Tool Calling | Model-driven tool selection |
@@ -972,10 +972,10 @@ Phase 4 is complete when:
 - [x] Tool discovery works.
 - [x] Tool argument validation works.
 - [x] Repository tools are integrated.
-- [ ] File reading works.
-- [ ] File creation works.
-- [ ] File modification works.
-- [ ] File deletion is permission-controlled.
+- [x] File reading works.
+- [x] File creation works.
+- [x] File modification works.
+- [x] File deletion is permission-controlled.
 - [ ] Terminal command execution works.
 - [ ] Command output and errors are captured.
 - [ ] Execution timeouts are implemented.
@@ -984,7 +984,7 @@ Phase 4 is complete when:
 - [ ] Qwen can request tools through structured output.
 - [ ] Tool requests are validated before execution.
 - [ ] User approval is enforced for sensitive operations.
-- [ ] File changes can be inspected through diffs.
+- [x] File changes can be inspected through diffs.
 - [ ] Execution results are validated.
 - [ ] Failed operations are handled appropriately.
 - [ ] Multi-step development tasks work.
