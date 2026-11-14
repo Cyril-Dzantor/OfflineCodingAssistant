@@ -97,8 +97,8 @@ The architecture introduces an Agent/Orchestrator between the user interface, mo
 | ✅ 4.4 | Terminal Integration | Controlled command execution |
 | ✅ 4.5 | Task Planning | Break requests into executable steps |
 | ✅ 4.6 | Tool Calling | Model-driven tool selection |
-| 4.7 | Execution Control | Approval, validation, and error handling |
-| 4.8 | Multi-Step Execution | Complete development tasks |
+| ✅ 4.7 | Execution Control | Approval, validation, and error handling |
+| ✅ 4.8 | Multi-Step Execution | Complete development tasks |
 | 4.9 | Testing & Evaluation | Validate agent reliability |
 
 ---
@@ -983,10 +983,10 @@ Phase 4 is complete when:
 - [x] Task execution states are tracked.
 - [x] Qwen can request tools through structured output.
 - [x] Tool requests are validated before execution.
-- [ ] User approval is enforced for sensitive operations.
+- [x] User approval is enforced for sensitive operations.
 - [x] File changes can be inspected through diffs.
-- [ ] Execution results are validated.
-- [ ] Failed operations are handled appropriately.
+- [x] Execution results are validated.
+- [x] Failed operations are handled appropriately.
 - [ ] Multi-step development tasks work.
 - [x] Agent execution is logged.
 - [ ] The assistant remains fully operational offline.
