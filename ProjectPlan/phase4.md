@@ -987,7 +987,7 @@ Phase 4 is complete when:
 - [x] File changes can be inspected through diffs.
 - [x] Execution results are validated.
 - [x] Failed operations are handled appropriately.
-- [ ] Multi-step development tasks work.
+- [x] Multi-step development tasks work.
 - [x] Agent execution is logged.
 - [ ] The assistant remains fully operational offline.
 
