@@ -61,7 +61,7 @@ def run_phase4_benchmark():
 
     # --- Test 4: Terminal Execution ---
     print("Test 4 [Terminal Execution]:")
-    res4 = controller.controlled_execute("execute_command", {"command": "python tests/test_validation.py"})
+    res4 = controller.controlled_execute("execute_command", {"command": f'"{sys.executable}" tests/test_validation.py'})
     if res4.success and res4.output["exit_code"] == 0:
         print("  Result: [PASS] Command executed and output captured cleanly.\n")
         passed += 1

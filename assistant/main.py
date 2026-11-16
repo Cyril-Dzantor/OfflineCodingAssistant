@@ -7,12 +7,19 @@ from assistant.repo.scanner import ProjectScanner
 from assistant.repo.search import SearchEngine
 from assistant.repo.parser import CodeParser
 from assistant.repo.context import ContextBuilder 
+from assistant.agent.manager import AgentManager
+from assistant.agent.state import RequestType
+from assistant.tools import get_default_registry 
+from assistant.rag.memory import ProjectMemory
+from assistant.rag.indexer import RepositoryIndexer
 
 
 scanner = ProjectScanner()
 search_engine = SearchEngine(scanner)
 parser = CodeParser()
 context_builder = ContextBuilder(scanner=scanner) 
+project_memory = ProjectMemory()
+indexer = RepositoryIndexer(root_dir=".")
 
 
 def print_help():
@@ -20,9 +27,12 @@ def print_help():
     print("/project        - Show project metadata & languages")
     print("/tree           - Display project folder structure")
     print("/files          - List all indexed source files")
-    print("/search <query> - Search repository code")
+    print("/search <query> - Keyword search across repository code")
+    print("/hybrid <query> - Hybrid (semantic + keyword) search")
     print("/symbols <file> - List symbols (classes/functions) in a file")
-    print("/context <query>- Preview context retrieved for a question")
+    print("/context <query>- Preview multi-source context for a question")
+    print("/memory [cmd]   - Inspect or manage persistent memory (e.g. /memory project)")
+    print("/index [rebuild]- Run incremental or full repository indexing")
     print("/clear          - Clear conversation history")
     print("/help           - Show this message")
     print("/exit           - Quit the assistant")
@@ -70,6 +80,12 @@ def main():
     # Initialize the components
     model = ModelInterface()
     conversation = ConversationManager()
+    agent = AgentManager(
+        model=model,
+        conversation=conversation,
+        context_builder=context_builder,
+        registry=get_default_registry()
+    )
     
     print("\nType /help for commands. Type /exit to quit.")
 
@@ -127,6 +143,33 @@ def main():
                 query = user_input[9:].strip()
                 ctx = context_builder.build_context(query)
                 print(f"\n{ctx or 'No relevant context found.'}\n")
+                continue
+            elif cmd_lower.startswith("/hybrid "):
+                query = user_input[8:].strip()
+                if context_builder.retriever:
+                    results = context_builder.retriever.search(query, top_k=5)
+                    print(f"\nHybrid Retrieval Results for '{query}':")
+                    for idx, r in enumerate(results, 1):
+                        print(f"  {idx}. {r.citation}")
+                    print()
+                else:
+                    print("\n[!] Hybrid retriever not available.\n")
+                continue
+            elif cmd_lower.startswith("/memory"):
+                msg = project_memory.handle_command(user_input)
+                print(f"\n{msg}\n")
+                continue
+            elif cmd_lower.startswith("/index"):
+                rebuild = "rebuild" in cmd_lower
+                print(f"\n[*] Running repository indexing (force_rebuild={rebuild})...")
+                stats = indexer.index_repository(force_rebuild=rebuild)
+                print(f"[+] Done: {stats['total_scanned']} files scanned, {stats['total_chunks_added']} chunks added, {stats['total_chunks_in_db']} in DB ({stats['duration_seconds']}s)\n")
+                continue
+
+            # If the request requires project interaction (ACTION)
+            if agent.classify_request(user_input) == RequestType.ACTION:
+                state = agent.process_request(user_input)
+                print(f"\nCydags > {state.final_response}\n")
                 continue
                 
             # Add user message to history

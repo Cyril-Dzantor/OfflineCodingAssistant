@@ -22,16 +22,25 @@ The assistant operates as an interactive CLI that inspects the local project bef
 ## Project Structure
 
 - assistant/
-  - agent/ - Agent orchestrator and execution state (Phase 4).
+  - agent/ - Agent orchestrator and multi-step execution state (Phase 4).
   - config/ - System configuration, hardware layers, and model settings.
   - core/ - Model interface (llama-cpp wrapper) and conversation history manager.
   - prompts/ - Base system prompt templates.
+  - rag/ - Local semantic retrieval, embeddings, chunking, and memory (Phase 5):
+    - embeddings.py - FastEmbed ONNX local embedding model.
+    - chunker.py - AST and heading-aware code and document chunker.
+    - vector_store.py - Local persistent vector store (SQLite + NumPy).
+    - indexer.py - Incremental repository indexing with content hashing.
+    - semantic_search.py - Natural-language dense code search.
+    - hybrid.py - Hybrid search with Reciprocal Rank Fusion (RRF).
+    - ranker.py - Deduplication, heuristic boosts, and result filtering.
+    - memory.py - Persistent project and development memory.
   - repo/ - Project understanding layer:
     - detector.py - Project root detection.
     - scanner.py - File traversal, metadata collection, and filtering.
     - search.py - Keyword and regex search engine.
-    - parser.py - Tree-sitter code parser for structural symbols.
-    - context.py - Budget-aware context assembler for prompts.
+    - parser.py - AST and symbol parser.
+    - context.py - Multi-source budget-aware context assembler for prompts.
   - utils/ - Logging and helper utilities.
   - main.py - Interactive CLI interface.
 - ProjectPlan/ - Detailed phase-by-phase design specifications.
@@ -91,9 +100,12 @@ Within the CLI, you can use the following commands:
 - /project - Display detected project information, root directory, and languages.
 - /tree - Print a clean directory tree of the project.
 - /files - List all indexed files in the repository.
-- /search <query> - Search project files for keywords or patterns.
+- /search <query> - Keyword search across repository code.
+- /hybrid <query> - Hybrid (semantic + keyword) search across repository code.
 - /symbols <file> - Display parsed symbols (classes, methods, functions) in a specific file.
 - /context <query> - Preview the exact context constructed and sent to the model for a query.
+- /memory [cmd] - Inspect or manage persistent memory (e.g. /memory project, /memory clear).
+- /index [rebuild] - Run incremental or full repository indexing.
 - /clear - Reset conversation history.
 - /help - Show available commands.
 - /exit - Quit the assistant.
@@ -105,5 +117,6 @@ You can also ask questions directly in natural language (for example: "Where is 
 - Phase 1: Environment & Local Inference (Complete)
 - Phase 2: CLI Interface & Conversation Manager (Complete)
 - Phase 3: Project & Code Understanding (Complete)
-- Phase 4: Tool Integration & Agent System (In Progress)
+- Phase 4: Tool Integration & Agent System (Complete)
+- Phase 5: Advanced Context Management & RAG (Complete)
 

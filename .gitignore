@@ -30,6 +30,7 @@ htmlcov/
 *.log
 scratch/
 temp/
+.cydags/
 
 # OS-specific files
 .DS_Store

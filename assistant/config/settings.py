@@ -15,4 +15,13 @@ TEMPERATURE = 0.2
 STREAM_RESPONSE = True
 SHOW_PERFORMANCE_STATS = True
 
+# --- RAG & Embedding Settings ---
+EMBEDDING_MODEL_NAME = "BAAI/bge-small-en-v1.5"
+EMBEDDING_CACHE_DIR = "models/embeddings"
+EMBEDDING_DIM = 384
+EMBEDDING_BATCH_SIZE = 32
+VECTOR_DB_PATH = ".cydags/vector_store.db"
+PROJECT_MEMORY_PATH = ".cydags/memory.db"
+
+
 

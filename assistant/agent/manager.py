@@ -122,8 +122,17 @@ class AgentManager:
             task.status = TaskStatus.RUNNING
             print(f"[*] Executing Step {task.id}: {task.title}...")
 
+            # Retrieve relevant code and project context for this step
+            task_context = self.context_builder.build_context(
+                f"{user_input} {task.title}",
+                include_memory=True,
+                tool_results=[f"[{a.tool_name}] {a.result[:200]}" for a in self.state.action_history[-2:]] if self.state.action_history else None,
+            )
+            context_block = f"\n{task_context}\n" if task_context else ""
+
             step_prompt = (
                 f"Overall Goal: {user_input}\n"
+                f"{context_block}"
                 f"Current Step {task.id}: {task.title} ({task.description})\n"
                 f"Suggested tool: {task.tool_hint or 'any'}\n"
                 "Please call the required tool to perform this step."

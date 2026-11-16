@@ -10,14 +10,14 @@ class FileFilter:
         # Hardcoded directories we ALWAYS want to ignore
         self.default_ignores = [
             ".git", "__pycache__", "venv", ".venv", "node_modules", 
-            "dist", "build", "coverage", ".pytest_cache", "Qwen 2.5", "models"
+            "dist", "build", "coverage", ".pytest_cache", "Qwen 2.5", "models", ".cydags"
         ]
         
         # Binary or non-text files we should never try to read
         self.ignore_extensions = [
             ".pyc", ".pyd", ".exe", ".dll", ".so", ".jpg", ".png", 
             ".mp4", ".pdf", ".zip", ".tar", ".gz", ".gguf",
-            ".safetensors", ".bin", ".pt", ".pth", ".onnx", ".parquet"
+            ".safetensors", ".bin", ".pt", ".pth", ".onnx", ".parquet", ".db", ".sqlite", ".sqlite3"
         ]
         
         self.max_file_size_bytes = 1 * 1024 * 1024

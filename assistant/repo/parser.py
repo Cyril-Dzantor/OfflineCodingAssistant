@@ -1,4 +1,5 @@
 import os
+import ast
 from dataclasses import dataclass, field
 from typing import List, Optional, Dict, Any
 
@@ -151,12 +152,83 @@ class TreeSitterPythonParser:
             self._traverse(child, file_path, symbols, current_class=current_class)
 
 
+class AstPythonParser:
+    """Robust, memory-safe AST parser for Python using the standard library."""
+
+    def parse(self, file_path: str, code_bytes: bytes) -> List[Symbol]:
+        try:
+            source = code_bytes.decode("utf-8", errors="replace")
+            tree = ast.parse(source)
+        except Exception:
+            return []
+
+        symbols: List[Symbol] = []
+        for node in tree.body:
+            self._visit(node, file_path, symbols, current_class=None)
+        return symbols
+
+    def _visit(
+        self,
+        node: ast.AST,
+        file_path: str,
+        symbols: List[Symbol],
+        current_class: Optional[str] = None,
+    ):
+        if isinstance(node, (ast.Import, ast.ImportFrom)):
+            names = [alias.name for alias in node.names]
+            mod = getattr(node, "module", "")
+            imp_name = f"from {mod} import " + ", ".join(names) if mod else "import " + ", ".join(names)
+            symbols.append(
+                Symbol(
+                    name=imp_name,
+                    kind="import",
+                    file_path=file_path,
+                    start_line=node.lineno,
+                    end_line=getattr(node, "end_lineno", node.lineno) or node.lineno,
+                    parent=current_class,
+                )
+            )
+        elif isinstance(node, ast.ClassDef):
+            doc = ast.get_docstring(node)
+            symbols.append(
+                Symbol(
+                    name=node.name,
+                    kind="class",
+                    file_path=file_path,
+                    start_line=node.lineno,
+                    end_line=getattr(node, "end_lineno", node.lineno) or node.lineno,
+                    parent=current_class,
+                    docstring=doc,
+                )
+            )
+            for child in node.body:
+                self._visit(child, file_path, symbols, current_class=node.name)
+        elif isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+            kind = "method" if current_class else "function"
+            params = [a.arg for a in node.args.args]
+            doc = ast.get_docstring(node)
+            symbols.append(
+                Symbol(
+                    name=node.name,
+                    kind=kind,
+                    file_path=file_path,
+                    start_line=node.lineno,
+                    end_line=getattr(node, "end_lineno", node.lineno) or node.lineno,
+                    parent=current_class,
+                    parameters=params,
+                    docstring=doc,
+                )
+            )
+            for child in node.body:
+                self._visit(child, file_path, symbols, current_class=current_class)
+
+
 class CodeParser:
     """Multi-language parser dispatcher."""
 
     def __init__(self):
         self._parsers = {
-            ".py": TreeSitterPythonParser(),
+            ".py": AstPythonParser(),
         }
 
     def parse_file(self, file_path: str) -> List[Symbol]:
