@@ -1,0 +1,53 @@
+{
+  "timestamp": 1795037845.5547585,
+  "suites_executed": [
+    "agent"
+  ],
+  "agent_evaluation": {
+    "total_tasks": 4,
+    "tool_selection_accuracy": 1.0,
+    "task_completion_rate": 0.75,
+    "details": [
+      {
+        "id": "AGENT-001",
+        "tool_selected": "read_file",
+        "tool_accuracy": 1.0,
+        "argument_coverage": 1.0,
+        "execution_success": true,
+        "state_verified": true,
+        "duration_seconds": 0.0011,
+        "error": null
+      },
+      {
+        "id": "AGENT-002",
+        "tool_selected": "create_file",
+        "tool_accuracy": 1.0,
+        "argument_coverage": 1.0,
+        "execution_success": true,
+        "state_verified": true,
+        "duration_seconds": 0.0024,
+        "error": null
+      },
+      {
+        "id": "AGENT-003",
+        "tool_selected": "edit_file",
+        "tool_accuracy": 1.0,
+        "argument_coverage": 1.0,
+        "execution_success": false,
+        "state_verified": false,
+        "duration_seconds": 0.0005,
+        "error": "File not found: 'scratch_eval_calc.py'"
+      },
+      {
+        "id": "AGENT-004",
+        "tool_selected": "execute_command",
+        "tool_accuracy": 1.0,
+        "argument_coverage": 1.0,
+        "execution_success": true,
+        "state_verified": true,
+        "duration_seconds": 2.2537,
+        "error": null
+      }
+    ]
+  }
+}

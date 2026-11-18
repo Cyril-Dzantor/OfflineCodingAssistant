@@ -1,0 +1,43 @@
+[
+  {
+    "id": "RET-001",
+    "category": "exact_search",
+    "query": "Find the authenticate_user function",
+    "expected_files": ["backend/auth/service.py", "assistant/rag/embeddings.py"],
+    "expected_symbols": ["authenticate_user", "AuthenticationService.authenticate_user"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "RET-002",
+    "category": "semantic_search",
+    "query": "Where are user login credentials verified against stored hashes?",
+    "expected_files": ["backend/auth/service.py", "tests/test_auth.py"],
+    "expected_symbols": ["authenticate_user", "test_authenticate_success"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "RET-003",
+    "category": "documentation_search",
+    "query": "How is database connection pooling configured?",
+    "expected_files": ["backend/database/config.py", "README.md"],
+    "expected_symbols": ["DatabaseConfig", "init_db_connection"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "RET-004",
+    "category": "cross_file_search",
+    "query": "Trace the flow of user registration and token generation",
+    "expected_files": ["backend/api/routes.py", "backend/auth/service.py", "backend/users/models.py", "backend/auth/middleware.py"],
+    "expected_symbols": ["register_user", "generate_token", "User"],
+    "difficulty": "hard"
+  },
+  {
+    "id": "RET-005",
+    "category": "semantic_search",
+    "query": "How does the assistant prevent infinite execution loops on repeated identical tool calls?",
+    "expected_files": ["assistant/agent/control.py"],
+    "expected_symbols": ["ExecutionController.controlled_execute", "ExecutionController"],
+    "difficulty": "medium"
+  }
+]
+

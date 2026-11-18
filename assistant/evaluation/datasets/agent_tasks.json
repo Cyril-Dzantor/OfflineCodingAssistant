@@ -1,0 +1,39 @@
+[
+  {
+    "id": "AGENT-001",
+    "category": "read_action",
+    "goal": "Read lines 1 to 10 of assistant/config/settings.py",
+    "expected_tool": "read_file",
+    "required_args": ["path"],
+    "expected_arg_values": {"path": "assistant/config/settings.py"},
+    "verification_check": "MODEL_PATH"
+  },
+  {
+    "id": "AGENT-002",
+    "category": "create_action",
+    "goal": "Create a file named scratch_eval_calc.py containing a function add(a, b) that returns a + b",
+    "expected_tool": "create_file",
+    "required_args": ["path", "content"],
+    "expected_arg_values": {"path": "scratch_eval_calc.py"},
+    "verification_check": "def add(a, b):"
+  },
+  {
+    "id": "AGENT-003",
+    "category": "modify_action",
+    "goal": "In scratch_eval_calc.py, edit the add function to cast inputs to int",
+    "expected_tool": "edit_file",
+    "required_args": ["path", "old_str", "new_str"],
+    "expected_arg_values": {"path": "scratch_eval_calc.py"},
+    "verification_check": "int(a)"
+  },
+  {
+    "id": "AGENT-004",
+    "category": "command_action",
+    "goal": "Run the Phase 3 validation suite via python tests/test_validation.py",
+    "expected_tool": "execute_command",
+    "required_args": ["command"],
+    "expected_arg_values": {},
+    "verification_check": "6/6 Tests Passed"
+  }
+]
+

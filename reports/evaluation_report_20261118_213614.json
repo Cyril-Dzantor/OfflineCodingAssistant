@@ -1,0 +1,167 @@
+{
+  "timestamp": 1795037762.463103,
+  "suites_executed": [
+    "retrieval"
+  ],
+  "retrieval_evaluation": {
+    "k": 3,
+    "total_queries": 5,
+    "summary": {
+      "keyword": {
+        "mean_precision_at_3": 0.1333,
+        "mean_recall_at_3": 0.05,
+        "mrr": 0.2,
+        "avg_latency_seconds": 0.0181
+      },
+      "semantic": {
+        "mean_precision_at_3": 0.2,
+        "mean_recall_at_3": 0.7286,
+        "mrr": 0.4,
+        "avg_latency_seconds": 0.1606
+      },
+      "hybrid": {
+        "mean_precision_at_3": 0.3333,
+        "mean_recall_at_3": 0.7786,
+        "mrr": 0.4333,
+        "avg_latency_seconds": 0.0807
+      }
+    },
+    "details": [
+      {
+        "id": "RET-001",
+        "query": "Find the authenticate_user function",
+        "modes": {
+          "keyword": {
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "duration_seconds": 0.0736,
+            "retrieved_count": 3
+          },
+          "semantic": {
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.75,
+            "reciprocal_rank": 0.25,
+            "duration_seconds": 0.4783,
+            "retrieved_count": 3
+          },
+          "hybrid": {
+            "precision_at_k": 0.3333,
+            "recall_at_k": 0.75,
+            "reciprocal_rank": 0.5,
+            "duration_seconds": 0.1062,
+            "retrieved_count": 3
+          }
+        }
+      },
+      {
+        "id": "RET-002",
+        "query": "Where are user login credentials verified against stored hashes?",
+        "modes": {
+          "keyword": {
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "duration_seconds": 0.0041,
+            "retrieved_count": 3
+          },
+          "semantic": {
+            "precision_at_k": 0.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.25,
+            "duration_seconds": 0.1037,
+            "retrieved_count": 3
+          },
+          "hybrid": {
+            "precision_at_k": 0.0,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.1667,
+            "duration_seconds": 0.0754,
+            "retrieved_count": 3
+          }
+        }
+      },
+      {
+        "id": "RET-003",
+        "query": "How is database connection pooling configured?",
+        "modes": {
+          "keyword": {
+            "precision_at_k": 0.6667,
+            "recall_at_k": 0.25,
+            "reciprocal_rank": 1.0,
+            "duration_seconds": 0.0068,
+            "retrieved_count": 3
+          },
+          "semantic": {
+            "precision_at_k": 0.3333,
+            "recall_at_k": 0.75,
+            "reciprocal_rank": 0.5,
+            "duration_seconds": 0.0718,
+            "retrieved_count": 3
+          },
+          "hybrid": {
+            "precision_at_k": 0.6667,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5,
+            "duration_seconds": 0.0738,
+            "retrieved_count": 3
+          }
+        }
+      },
+      {
+        "id": "RET-004",
+        "query": "Trace the flow of user registration and token generation",
+        "modes": {
+          "keyword": {
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "duration_seconds": 0.0034,
+            "retrieved_count": 3
+          },
+          "semantic": {
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.1429,
+            "reciprocal_rank": 0.0,
+            "duration_seconds": 0.0726,
+            "retrieved_count": 3
+          },
+          "hybrid": {
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.1429,
+            "reciprocal_rank": 0.0,
+            "duration_seconds": 0.0684,
+            "retrieved_count": 3
+          }
+        }
+      },
+      {
+        "id": "RET-005",
+        "query": "How does the assistant prevent infinite execution loops on repeated identical tool calls?",
+        "modes": {
+          "keyword": {
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "duration_seconds": 0.0026,
+            "retrieved_count": 3
+          },
+          "semantic": {
+            "precision_at_k": 0.6667,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "duration_seconds": 0.0769,
+            "retrieved_count": 3
+          },
+          "hybrid": {
+            "precision_at_k": 0.6667,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "duration_seconds": 0.0795,
+            "retrieved_count": 3
+          }
+        }
+      }
+    ]
+  }
+}
